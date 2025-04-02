@@ -1,17 +1,20 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Product\ProductController;
+use Orion\Facades\Orion;
 
+// Route::get('/categories', [CategoryController::class, 'index']);
 
+// Route::post('/categories', [CategoryController::class, 'store']);
 
-Route::get('/categories', [CategoryController::class, 'index']);
+// Route::get('/categories/{id}', [CategoryController::class, 'show']);
 
-Route::post('/categories', [CategoryController::class, 'store']);
+// Route::patch('/categories/{id}', [CategoryController::class, 'update']);
 
-Route::get('/categories/{id}', [CategoryController::class, 'show']);
+// Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 
-Route::patch('/categories/{id}', [CategoryController::class, 'update']);
+Route::apiResource('categories', CategoryController::class);
 
-Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+Orion::resource("products", ProductController::class);
