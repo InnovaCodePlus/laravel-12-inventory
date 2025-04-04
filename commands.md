@@ -1,4 +1,7 @@
-
+## Correr el proyecto en desarrollo
+```bash
+composer run dev
+```
 
 ## Creación de Custom Request
 ```bash
