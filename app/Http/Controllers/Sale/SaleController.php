@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Sale;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Sale\SaleCollection;
+use App\Http\Resources\Sale\SaleResource;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
@@ -15,9 +17,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-
-
-
+        $sales = Sale::orderBy("created_at", "desc")->get();
+        return new SaleCollection($sales);
     }
 
     /**
@@ -82,6 +83,14 @@ class SaleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sale = Sale::find($id);
+        
+        if( !$sale ){
+            return response()->json([
+                "message" => "La venta no existe"
+            ], 404);
+        }
+
+        return new SaleResource($sale);
     }
 }
